@@ -1,0 +1,2 @@
+//CssImport
+import './style.scss'
