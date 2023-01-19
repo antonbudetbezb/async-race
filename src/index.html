@@ -7,8 +7,67 @@
     <title>Async-race</title>
 </head>
 <body>
-    <header class="header"></header>
-    <main class="page"></main>
+    <header class="header">
+      <div class="wrapper">
+        <div class="buttons-wrapper">
+          <button class="button">To garage</button>
+          <button class="button">To winners</button>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="wrapper">
+        <div class="menu">
+          <div class="create-car">
+            <input type="text" class="car__name">
+            <input type="color" class="car__color">
+            <input type="button" class="car__button button button_blue">
+          </div>
+          <div class="update-car">
+            <input type="text" class="car__name">
+            <input type="color" class="car__color">
+            <input type="button" class="car__button button button_blue">
+          </div>
+          <div class="buttons-block">
+            <div class="buttons-wrapper">
+              <button class="button">Race</button>
+              <button class="button">Reset</button>
+              <button class="button">Generate cars</button>
+            </div>
+          </div>
+        </div>
+        <section class="garage">
+          <div class="garage__title">
+            <span class="garage__title_name">Garage</span>
+            <span class="garage__title_count"></span>
+          </div>
+          <div class="pagination">
+            <span class="pagination__title">Page:</span>
+            <span class="pagination__num"></span>
+          </div>
+          <div class="car">
+            <div class="car__info">
+              <span class="car-buttons">
+                <div class="buttons-wrapper">
+                  <button class="button button_blue">Select</button>
+                  <button class="button button_blue">Remove</button>
+                </div>
+              </span>
+              <span class="car_name">Name</span>
+            </div>
+            <div class="car__track">
+              <div class="buttons-wrapper">
+                <button class="button button_active">A</button>
+                <button class="button button_inactive">B</button>
+              </div>
+              <div class="car-sprite"></div>
+              <div class="track-sprite"></div>
+              <div class="flag-sprite"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
     <footer class="footer"></footer>
 </body>
 </html>
