@@ -2,13 +2,13 @@
 @import 'sass/base/reset';
 
 //Layouts
+@import 'sass/layouts/wrapper.scss';
 
-
-//Main components
-
+//Components
+@import 'sass/components/buttons';
 
 //Pages
-
+@import 'sass/page/garage';
 
 //Modal
 
