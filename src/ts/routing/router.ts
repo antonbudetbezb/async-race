@@ -5,8 +5,7 @@ import { addWinnersPage } from "./pages/winnersPage";
 export const addRouter = (route: string) => {
   const main = document.querySelector('.main') as HTMLElement;
   main.innerHTML = '';
-  console.log(window.location.hash)
-  localStorage.setItem('routerPath', route);
+  localStorage.setItem('currentPage', route);
 
   switch (route) {
       case '#/':
