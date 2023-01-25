@@ -45,6 +45,12 @@ function addMenu():HTMLElement {
       carButton.addEventListener('click', createCar);
     }
 
+    if (text === 'Update') {
+      carName.classList.add('disabled');
+      carColor.classList.add('disabled');
+      carButton.classList.add('disabled');
+    }
+
     return [carName, carColor, carButton];
   }
 
