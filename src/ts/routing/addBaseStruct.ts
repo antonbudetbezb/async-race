@@ -2,8 +2,8 @@ export function addBaseStructure():void {
   const currentPage = localStorage.getItem('currentPage') as string;
   console.log(currentPage)
   if (currentPage == null) {
-    localStorage.setItem('currentPage', window.location.hash)
-  } 
+    localStorage.setItem('currentPage', window.location.hash);
+  }
   const body = document.querySelector('body');
   body?.append(addHeader(), ...createOtherStructure());
 }

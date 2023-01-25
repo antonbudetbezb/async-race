@@ -1,15 +1,23 @@
-export function getCars(): Array<HTMLElement> {
-  const arr = [];
+import { carSVG } from "../data/carSVG";
+import { fetchGarage } from "./fetchGarage";
+import { Car } from "../types";
 
-  const car = document.createElement('div');
-  car.classList.add('car');
+export async function getCars():Promise<string> {
+  fetchGarage().then((response: Array<Car>) => {
+    const garage = document.querySelector('.garage');
+    response.forEach((item: Car) => {
+      const car = document.createElement('div');
+      car.classList.add('car');
+      
+      car.append(addCarInfo(item), addCarTrack(item));
+      garage?.append(car)
+    })
+  });
 
-  car.append(addCarInfo(), addCarTrack());
-  arr.push(car);
-  return arr;
+  return 'ok'
 }
 
-function addCarInfo():HTMLElement {
+function addCarInfo(item: Car):HTMLElement {
   const carInfo = document.createElement('div');
   carInfo.classList.add('car__info');
 
@@ -28,13 +36,13 @@ function addCarInfo():HTMLElement {
 
   const carName = document.createElement('span');
   carName.classList.add('car_name');
-  carName.innerText = 'Name';
+  carName.innerText = item.name;
 
   carInfo.append(carButtons, carName);
   return carInfo
 }
 
-function addCarTrack():HTMLElement {
+function addCarTrack(item: Car):HTMLElement {
   const carTrack = document.createElement('div');
   carTrack.classList.add('car__track');
 
@@ -48,9 +56,12 @@ function addCarTrack():HTMLElement {
   sButton.innerText = 'B';
   buttons.append(fButton, sButton);
 
-  const carSprite = document.createElement('img');
+  const spriteWrapper = document.createElement('div');
+  spriteWrapper.classList.add('sprite-wrapper');
+
+  const carSprite = new DOMParser().parseFromString(carSVG, 'image/svg+xml').documentElement;
   carSprite.classList.add('car-sprite');
-  carSprite.src = '../../assets/car.svg';
+  carSprite.style.fill = item.color;
 
   const flagSprite = document.createElement('img');
   flagSprite.classList.add('flag-sprite');
@@ -58,7 +69,8 @@ function addCarTrack():HTMLElement {
 
   const trackSprite = document.createElement('div');
   trackSprite.classList.add('track-sprite');
+  spriteWrapper.append(carSprite, flagSprite, trackSprite)
 
-  carTrack.append (buttons, carSprite, flagSprite, trackSprite)
+  carTrack.append (buttons, spriteWrapper)
   return carTrack;
 }
