@@ -3,6 +3,8 @@ import { fetchGarage } from "./fetchGarage";
 import { Car } from "../types";
 import { updateCar } from "./updateCar";
 import { addMainPage } from "../routing/pages/mainPage";
+import { startEngine } from "./startEngine";
+import { resetCar } from "./resetCar";
 
 export async function getCars():Promise<string> {
   fetchGarage().then((response: Array<Car>) => {
@@ -54,6 +56,9 @@ function addCarInfo(item: Car):HTMLElement {
   sButton.className = ('button button_blue');
   sButton.innerText = 'Remove';
   sButton.addEventListener('click', (e:Event) => {
+    fetch(`http://127.0.0.1:3000/winners/${item.id}`, {
+      method: 'DELETE',
+  });
     fetch(`http://127.0.0.1:3000/garage/${item.id}`, {
       method: 'DELETE',
   }).then(response => {
@@ -82,11 +87,13 @@ function addCarTrack(item: Car):HTMLElement {
   const buttons = document.createElement('div');
   buttons.classList.add('buttons-wrapper');
   const fButton = document.createElement('button');
-  fButton.className = ('button button_active');
+  fButton.className = ('button');
   fButton.innerText = 'A';
+  fButton.addEventListener('click', startEngine);
   const sButton = document.createElement('button');
-  sButton.className = ('button button_inactive');
+  sButton.className = ('button disabled');
   sButton.innerText = 'B';
+  sButton.addEventListener('click', resetCar);
   buttons.append(fButton, sButton);
 
   const spriteWrapper = document.createElement('div');

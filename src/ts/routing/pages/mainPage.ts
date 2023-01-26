@@ -2,6 +2,7 @@ import { setCarsAmount } from "../../garagePage/setCarsAmount";
 import { getCars } from "../../garagePage/getCars";
 import { getPageNumber } from "../../garagePage/getPageNumber";
 import { createCar } from "../../garagePage/createCar";
+import { generateRandomCars } from "../../garagePage/generateRandomCar";
 
 export function addMainPage(): HTMLElement {
   const wrapper = document.createElement('div');
@@ -72,6 +73,7 @@ function addMenu():HTMLElement {
     const tButton = document.createElement('button');
     tButton.classList.add('button');
     tButton.innerText = 'Generate cars';
+    tButton.addEventListener('click', generateRandomCars);
   
     wrapper.append(fButton, sButton, tButton);
     el.append(wrapper);

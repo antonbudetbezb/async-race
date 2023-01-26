@@ -1,3 +1,5 @@
+import { addWinnersToTable } from "../../winnersPage/addWinnersToTable";
+
 export function addWinnersPage(): HTMLElement {
   const wrapper = document.createElement('div');
   wrapper.classList.add('wrapper'); 
@@ -53,11 +55,7 @@ export function addWinnersPage(): HTMLElement {
 
   table.appendChild(firstRow);
 
-  const carsRow = document.createElement('tr');
-  carsRow.classList.add('cars-row');
-  table.appendChild(carsRow);
-
   wrapper.appendChild(table);
-
+  addWinnersToTable(table);
   return wrapper;
 }
