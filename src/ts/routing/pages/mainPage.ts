@@ -1,12 +1,14 @@
-import { getCarsAmount } from "../../garage/getAmount";
-import { getCars } from "../../garage/getCars";
-import { getPageNumber } from "../../garage/getPageNumber";
+import { setCarsAmount } from "../../garagePage/setCarsAmount";
+import { getCars } from "../../garagePage/getCars";
+import { getPageNumber } from "../../garagePage/getPageNumber";
+import { createCar } from "../../garagePage/createCar";
 
 export function addMainPage(): HTMLElement {
   const wrapper = document.createElement('div');
   wrapper.classList.add('wrapper');
   
   wrapper.append(addMenu(), addGarage());
+  getCars();
   return wrapper;
 }
 
@@ -16,16 +18,16 @@ function addMenu():HTMLElement {
 
   const createButtons = document.createElement('div');
   createButtons.classList.add('create-car');
-  createButtons.append(...addButtons());
+  createButtons.append(...addButtons('Create'));
 
   const updateButtons = document.createElement('div');
   updateButtons.classList.add('update-car');
-  updateButtons.append(...addButtons());
+  updateButtons.append(...addButtons('Update'));
 
   el.append(createButtons, updateButtons, addButtonsBlock())
   return el;
 
-  function addButtons(): Array<HTMLElement> {
+  function addButtons(text: string): Array<HTMLElement> {
     const carName = document.createElement('input');
     carName.classList.add('car__name');
     carName.type = 'text';
@@ -37,6 +39,17 @@ function addMenu():HTMLElement {
     const carButton = document.createElement('input');
     carButton.className = 'car__button button button_blue';
     carButton.type = 'button';
+    carButton.defaultValue = text;
+
+    if (text === 'Create') {
+      carButton.addEventListener('click', createCar);
+    }
+
+    if (text === 'Update') {
+      carName.classList.add('disabled');
+      carColor.classList.add('disabled');
+      carButton.classList.add('disabled');
+    }
 
     return [carName, carColor, carButton];
   }
@@ -77,7 +90,7 @@ function addGarage():HTMLElement {
   titleName.innerText = 'Garage: ';
   const titleCount = document.createElement('span');
   titleCount.classList.add('garage__title_count');
-  titleCount.innerText = getCarsAmount();
+  setCarsAmount();
   garageTitle.append(titleName, titleCount);
 
   const pagination = document.createElement('div');
@@ -90,6 +103,6 @@ function addGarage():HTMLElement {
   pagNumber.innerText = getPageNumber();
   pagination.append(pagName, pagNumber);
 
-  el.append(garageTitle, pagination, ...getCars());
+  el.append(garageTitle, pagination);
   return el;
 }

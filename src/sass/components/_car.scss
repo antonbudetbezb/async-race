@@ -1,0 +1,54 @@
+.car {
+  padding: 5px;
+  border: 0.5px solid grey;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.car__info {
+  display: flex;
+  align-items: center;
+
+  .car_name {
+    font-size: 20px;
+  }
+}
+
+.car__track {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 10px;
+
+  button {
+    width: 30px;
+  }
+}
+
+.sprite-wrapper {
+  flex-grow: 1;
+  position: relative;
+}
+
+.car-sprite {
+  position: absolute;
+  top: 10px;
+  left: 0%;
+}
+
+.flag-sprite {
+  height: 50px;
+  position: relative;
+  right: -90%;
+  top: 0;
+}
+
+.track-sprite {
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px dashed black
+  }
+}
